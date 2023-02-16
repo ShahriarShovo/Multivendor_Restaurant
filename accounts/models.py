@@ -44,12 +44,12 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser,PermissionsMixin):
 
-    RESTAURANT=1
+    VENDOR=1
     CUSTOMER=2
 
     ROLE_CHOOSE=(
-        (RESTAURANT,'restaurant'),
-        (CUSTOMER,'customer'),
+        (VENDOR,'Vendor'),
+        (CUSTOMER,'Customer'),
     )
 
 

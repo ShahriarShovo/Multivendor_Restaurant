@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     
     # App created by developer
     'accounts',
+    'vendor',
 ]
 
 MIDDLEWARE = [
