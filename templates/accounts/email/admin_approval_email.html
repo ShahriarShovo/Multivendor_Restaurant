@@ -1,0 +1,11 @@
+{% autoescape off %}
+
+Hi{{user.fist_name}},
+
+{% if is_approved %}
+Congrats ! We approved your Restuarant
+{% else %}
+Sorry ! We cant approved your Restuarant
+{% endif %}
+
+{% endautoescape %}
