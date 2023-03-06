@@ -1,5 +1,6 @@
 from django import forms
-from .models import User
+from .models import User, UserProfile
+from .validator import allow_only_image
 
 
 class UserForm(forms.ModelForm):
@@ -18,3 +19,25 @@ class UserForm(forms.ModelForm):
                 "Password Does not Match"
             )
         
+
+class Vendfor_Profile_Form(forms.ModelForm):
+    profile_picture=forms.FileField(widget=forms.FileInput(attrs={'class':'btn btn-info'}),validators=[allow_only_image])
+    cover_photo=forms.FileField(widget=forms.FileInput(attrs={'class':'btn btn-info'}),validators=[allow_only_image])
+    address=forms.CharField(widget=forms.TextInput(attrs={'placeholder':'start typing...', 'required': 'required'}))
+
+    #latitude=forms.CharField(widget=forms.TextInput(attrs={'readonly':'readonly'}))
+    #longitute=forms.CharField(widget=forms.TextInput(attrs={'readonly':'readonly'}))
+    class Meta:
+        model=UserProfile
+        fields=('profile_picture','cover_photo', 'address',
+                'country','state','city',
+                'pin_code','latitude','longitute',)
+        
+    def __init__(self, *args, **kwargs):
+        super(Vendfor_Profile_Form,self).__init__(*args, **kwargs)
+        for field in self.fields:
+            if field=='latitude' or field=='longitute':
+                self.fields[field].widget.attrs['readonly']='readonly'
+            
+            
+            
