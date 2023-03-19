@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- Main Section Start -->
+<div class="main-section">
+    <!-- inclde colver-->
+    {% include 'includes/cover.html' %}
+     <div class="page-section account-header buyer-logged-in">
+         <div class="container">
+             <div class="row">
+                 <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <!--Laod Sidebar -->
+                    {% include 'includes/v_sidebar.html' %}
+                 </div>
+                 <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                     <div class="user-dashboard loader-holder">
+                         <div class="user-holder">
+                             
+                            <h2>Modify Food</h2>
+                            <!-- My Restaurants Form Start -->
+
+                           <form action="{% url 'edit_food' food.pk %}" method="POST">
+                            {% csrf_token %}
+                            {{form}}
+                            
+                            {% for field in form  %}
+                                {% if feld.errors %}
+                                    {% for error in field.errors %}
+                                    <li>{{ error }}</li>
+                                    {% endfor %}
+                                {% endif %}
+                            {% endfor %}
+                            <div class="field-holder">
+                                <div class="payment-holder input-button-loader">
+                                    <input  type="submit" value="Edit Food" >
+                                </div>
+                            </div>
+
+                            
+
+                           </form>
+                           
+                             
+                             
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+ </div>
+ <!-- Main Section End -->
+
+
+
+
+
+
+{% endblock content %}

@@ -21,9 +21,11 @@
                             <h2>Menue Builder</h2>
                             <!-- My Restaurants Form Start -->
 
+                            {% if categories %}
+
                             <hr>
 
-                            <a href="#" class="btn btn-success float-right m-1 "><i class="fa fa-plus"></i>
+                            <a href="{% url 'add_food' %}" class="btn btn-success float-right m-1 "><i class="fa fa-plus"></i>
 
                                 Add Food</a>
                             <a href="{% url 'add_category' %}" class="btn btn-info float-right m-1 "><i class="fa fa-plus"></i>
@@ -42,6 +44,7 @@
                                         <a href="{% url 'food_items_by_category' cat.pk %}"><p class "md-0 font-weight-bold">{{cat}}</p>
                                         <small class="text-muted">{{cat.description}}</small> </a>
                                     </td>
+                                    
                                     <td><a href="{% url 'edit_category' cat.pk %}"> <i class="fa fa-pencil"></i></a> |<a href="{% url 'delete_category' cat.pk %}" onclick="return confirm('Are you sure to delete this category ?')"> <i class="fa fa-trash text-danger"></a></i></td>
                                     
                                   </tr>
@@ -49,6 +52,13 @@
                                   {% endfor %}
                                 </tbody>
                               </table>
+
+                              {% else %}
+
+                              <h5 class="text-center"> No Categories Found. </h5>
+                              <div class="text-center"><a href="{% url 'add_category' %}" class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i> Add Category</a></div>
+
+                              {% endif %}
                            
                              
                              
